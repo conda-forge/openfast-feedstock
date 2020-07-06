@@ -17,24 +17,23 @@ source:
 
 build:
   number: 0
-  skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
-    - make
+    - make  # [unix]
     - cmake
   host:
-    - libblas
-    - liblapack
+    - libblas  # [unix]
+    - liblapack  # [unix]
+    - m2w64-openblas  # [win]
 
 test:
   commands:
-    - openfast -h
+    - openfast -h  # [unix]
+    - openfast.exe /h  # [win]
 
 about:
   home: https://github.com/openfast/openfast
