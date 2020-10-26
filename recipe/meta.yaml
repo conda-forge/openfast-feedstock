@@ -11,9 +11,10 @@ package:
 #   # Download the tar-ball and do `openssl sha256 file.tar.gz` to update
 
 source:
-  git_url: https://github.com/openfast/openfast.git
-  git_rev: v{{ version }}
-  git_depth: 1 # (Defaults to -1/not shallow)
+  git_url: https://github.com/rafmudaf/openfast.git
+  git_rev: feature/simulink_support
+  # git_depth: 1 # (Defaults to -1/not shallow)
+  # path: /Users/rmudafor/Development/openfast/
 
 build:
   number: 0
