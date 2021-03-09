@@ -1,5 +1,5 @@
 {% set name = "openfast" %}
-{% set version = "2.5.0" %}
+{% set version = "2.6.0" %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +12,7 @@ package:
 
 source:
   git_url: https://github.com/openfast/openfast.git
-  git_rev: v{{ version }}
+  git_rev: dev
   git_depth: 1 # (Defaults to -1/not shallow)
 
 build:
