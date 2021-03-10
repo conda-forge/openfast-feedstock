@@ -2,19 +2,19 @@ channel_targets:
     - conda-forge dev
 
 c_compiler:
-    - gcc  # [linux]
-    - clang  # [osx]
-    - m2w64-toolchain  # [win]
+    - gcc        # [linux]
+    - clang      # [osx]
+    - m2w64_c    # [win]
 
 cxx_compiler:
-    - gxx  # [linux]
-    - clangxx  # [osx]
-    - m2w64-toolchain  # [win]
+    - gxx        # [linux]
+    - clangxx    # [osx]
+    - m2w64_cxx  # [win]
 
 fortran_compiler:
-    - gfortran  # [linux]
-    - gfortran  # [osx]
-    - m2w64-toolchain  # [win]
+    - gfortran       # [linux]
+    - gfortran       # [osx]
+    - m2w64_fortran  # [win]
 
 # CMAKE_GENERATOR:  # [win]
 #   - NMake Makefiles  # [win]
