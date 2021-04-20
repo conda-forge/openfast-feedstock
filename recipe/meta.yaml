@@ -88,7 +88,7 @@ outputs:
     build:
       script:
         - mkdir build && cd build
-        - cmake .. -DDOUBLE_PRECISION=OFF -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_LIBDIR=lib
+        - cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DDOUBLE_PRECISION=OFF -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_LIBDIR=lib
         - cmake --build . --target FAST.Farm --parallel
     test:
       commands:
