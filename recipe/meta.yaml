@@ -84,15 +84,15 @@ outputs:
     #     - cd test_build
     #     - ctest -R "{{ ctest_regex }}" --output-on-failure
 
-  - name: fast.farm
-    build:
-      script:
-        - mkdir build && cd build
-        - cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DDOUBLE_PRECISION=OFF -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_LIBDIR=lib
-        - cmake --build . --target FAST.Farm --parallel
-    test:
-      commands:
-        - FAST.Farm -h
+  # - name: fast.farm
+  #   build:
+  #     script:
+  #       - mkdir build && cd build
+  #       - cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DDOUBLE_PRECISION=OFF -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_LIBDIR=lib
+  #       - cmake --build . --target FAST.Farm --parallel
+  #   test:
+  #     commands:
+  #       - FAST.Farm -h
 
   # - name: tbb4py
   #   build:
