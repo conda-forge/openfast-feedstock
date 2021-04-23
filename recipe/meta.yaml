@@ -1,6 +1,14 @@
 {% set name = "openfast" %}
 {% set version = "3.1.0" %}
 
+{% set cmake_args = "-DDOUBLE_PRECISION=OFF -DCMAKE_INSTALL_LIBDIR=lib" %}
+
+{% set openfast_build_dir = "build_$PKG_HASH" %}
+{% set openfastlib_build_dir = "build_$PKG_HASH" %}
+{% set openfastmods_build_dir = "build_$PKG_HASH" %}
+
+# Adapted from https://github.com/conda-forge/tbb-feedstock/blob/master/recipe/meta.yaml
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -36,9 +44,8 @@ outputs:
   - name: openfast
     build:
       script:
-        - mkdir build && cd build
-        - cmake .. -DDOUBLE_PRECISION=OFF -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_LIBDIR=lib
-        - cmake --build . --target openfast --parallel
+        - cmake {{ cmake_args }} -S . -B build
+        - cmake --build build --target openfast --parallel
     test:
       commands:
         - openfast -h
@@ -46,10 +53,9 @@ outputs:
   - name: openfast-modules
     build:
       script:
-        - mkdir build && cd build
-        - cmake .. -DDOUBLE_PRECISION=OFF -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_LIBDIR=lib
-        - cmake --build . --target aerodyn_driver --parallel
-        - cmake --build . --target hydrodyn_driver --parallel
+        - cmake {{ cmake_args }} -S . -B build_module_drivers
+        - cmake --build build_module_drivers --target aerodyn_driver --parallel
+        - cmake --build build_module_drivers --target hydrodyn_driver --parallel
     test:
       commands:
         - aerodyn_driver -h
@@ -58,10 +64,9 @@ outputs:
   - name: openfast-libs
     build:
       script:
-        - mkdir build && cd build
-        - cmake .. -DDOUBLE_PRECISION=OFF -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_LIBDIR=lib
-        - cmake --build . --target openfastlib --parallel
-        - cmake --build . --target openfastcpplib --parallel
+        - cmake {{ cmake_args }} -DBUILD_SHARED_LIBS=ON -S . -B build_libraries
+        - cmake --build build_libraries --target openfastlib --parallel
+        - cmake --build build_libraries --target openfastcpplib --parallel
     # test:
     #   requires:
     #     - {{ compiler('cxx') }}
