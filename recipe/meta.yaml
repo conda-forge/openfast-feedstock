@@ -37,6 +37,7 @@ requirements:
     - make
     - cmake
   host:
+    - cmake
     - libblas
     - liblapack
 
