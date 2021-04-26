@@ -67,6 +67,10 @@ outputs:
         - cmake {{ cmake_args }} -DBUILD_SHARED_LIBS=ON -S . -B build_libraries
         - cmake --build build_libraries --target openfastlib --parallel
         - cmake --build build_libraries --target openfastcpplib --parallel
+    test:
+      commands:
+        - ls build_libraries/glue-codes/openfast
+        - ls build_libraries/glue-codes/openfast-cpp
     # test:
     #   requires:
     #     - {{ compiler('cxx') }}
