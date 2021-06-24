@@ -1,0 +1,14 @@
+c_compiler:
+- m2w64-toolchain
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- m2w64-toolchain
+fortran_compiler:
+- m2w64-toolchain
+fortran_compiler_version:
+- '5'
+target_platform:
+- win-64
