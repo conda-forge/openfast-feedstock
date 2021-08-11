@@ -68,9 +68,19 @@ outputs:
         - cmake {{ cmake_args }} -DBUILD_SHARED_LIBS=ON -S . -B build_libraries
         - cmake --build build_libraries --target openfastlib --parallel
         - cmake --build build_libraries --target openfastcpplib --parallel
+
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('fortran') }}
+        - {{ compiler('m2w64_c') }}  # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make
+        - cmake
     test:
       commands:
-        - ls build_libraries/glue-codes/openfast
+        - ls build_libraries/modules/openfast-library
         - ls build_libraries/glue-codes/openfast-cpp
     # test:
     #   requires:
