@@ -78,6 +78,12 @@ outputs:
         - {{ compiler('m2w64_cxx') }}  # [win]
         - make
         - cmake
+      host:
+        - cmake
+        - libblas
+        - liblapack
+        - libblas
+        - liblapack
     test:
       commands:
         - ls build_libraries/modules/openfast-library
