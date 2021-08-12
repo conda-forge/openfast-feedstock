@@ -51,16 +51,33 @@ outputs:
       commands:
         - openfast -h
 
+
   - name: openfast-modules
     build:
       script:
         - cmake {{ cmake_args }} -S . -B build_module_drivers
         - cmake --build build_module_drivers --target aerodyn_driver --parallel
         - cmake --build build_module_drivers --target hydrodyn_driver --parallel
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('fortran') }}
+        - {{ compiler('m2w64_c') }}  # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make
+        - cmake
+      host:
+        - cmake
+        - libblas
+        - liblapack
+        - libblas
+        - liblapack
     test:
       commands:
         - aerodyn_driver -h
         - hydrodyn_driver -h
+
 
   - name: openfast-libs
     build:
@@ -69,7 +86,6 @@ outputs:
         - cmake {{ cmake_args }} -DBUILD_SHARED_LIBS=ON -S . -B build_libraries
         - cmake --build build_libraries --target openfastlib --parallel
         # - cmake --build build_libraries --target openfastcpplib --parallel
-
     requirements:
       build:
         - {{ compiler('c') }}
@@ -89,27 +105,7 @@ outputs:
       commands:
         - ls build_libraries/modules/openfast-library
         # - ls build_libraries/glue-codes/openfast-cpp
-    # test:
-    #   requires:
-    #     - {{ compiler('cxx') }}
-    #     - ninja  # [win]
-    #     - make   # [not win]
-    #     - cmake
-    #   source_files:
-    #     - cmake
-    #     - test
-    #     - CMakeLists.txt
-    #     - include  # some tests depend on files from include
-    #     - src      # some tests depend on files from src
-    #   commands:
-    #     - set CMAKE_GENERATOR=Ninja  # [win]
-    #     # Setting TBB_DIR=TRUE is needed to use libraries from the tested package,
-    #     # but do not build them from sources; real path to TBBConfig files is not required,
-    #     # because CMake will successfully find installed tested package.
-    #     - cmake {{ cmake_args }} -DTBB_TEST=ON -DTBB_DIR=TRUE -S . -B test_build
-    #     - cmake --build test_build --target {{ tests }} --parallel  # build tests
-    #     - cd test_build
-    #     - ctest -R "{{ ctest_regex }}" --output-on-failure
+
 
   # - name: fast.farm
   #   build:
@@ -121,43 +117,6 @@ outputs:
   #     commands:
   #       - FAST.Farm -h
 
-  # - name: tbb4py
-  #   build:
-  #     script:
-  #       - set CMAKE_GENERATOR=Ninja  # [win]
-  #       - cmake {{ cmake_args }} -DTBB4PY_BUILD=ON -DTBB_TEST=OFF -S . -B {{ tbb4py_build_dir }}
-  #       - cmake --build {{ tbb4py_build_dir }} --target python_build --parallel
-  #       - cmake -DCOMPONENT=tbb4py -P {{ tbb4py_build_dir }}/cmake_install.cmake
-  #   requirements:
-  #     build:
-  #       - python                                 # [build_platform != target_platform]
-  #       - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-  #       - {{ compiler('cxx') }}
-  #       - ninja  # [win]
-  #       - make   # [not win]
-  #       - cmake
-  #       - swig
-  #     host:
-  #       - python
-  #       - {{ pin_subpackage('tbb-devel', exact=True) }}
-  #     run:
-  #       - tbb >={{ version }}                            # while python module works with any compatible tbb...
-  #       - python
-  #   test:
-  #     requires:
-  #       - python
-  #       - {{ pin_subpackage('tbb', exact=True) }}        # we want to test with this specific tbb package
-  #     imports:
-  #       - tbb
-  #       - TBB
-  #     commands:
-  #       - python -m TBB -h
-  #       - python -m tbb -h
-  #       - python -m tbb test
-  #   about:
-  #     summary: TBB module for Python
-  #     license: Apache 2.0
-  #     dev_url: https://github.com/oneapi-src/oneTBB
 
 about:
   home: https://github.com/openfast/openfast
