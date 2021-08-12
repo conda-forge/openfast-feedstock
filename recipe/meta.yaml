@@ -65,9 +65,10 @@ outputs:
   - name: openfast-libs
     build:
       script:
+        # - cmake {{ cmake_args }} -DBUILD_SHARED_LIBS=ON -DBUILD_OPENFAST_CPP_API=ON -S . -B build_libraries
         - cmake {{ cmake_args }} -DBUILD_SHARED_LIBS=ON -S . -B build_libraries
         - cmake --build build_libraries --target openfastlib --parallel
-        - cmake --build build_libraries --target openfastcpplib --parallel
+        # - cmake --build build_libraries --target openfastcpplib --parallel
 
     requirements:
       build:
@@ -87,7 +88,7 @@ outputs:
     test:
       commands:
         - ls build_libraries/modules/openfast-library
-        - ls build_libraries/glue-codes/openfast-cpp
+        # - ls build_libraries/glue-codes/openfast-cpp
     # test:
     #   requires:
     #     - {{ compiler('cxx') }}
