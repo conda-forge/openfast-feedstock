@@ -71,8 +71,6 @@ outputs:
         - cmake
         - libblas
         - liblapack
-        - libblas
-        - liblapack
     test:
       commands:
         - aerodyn_driver -h
@@ -99,8 +97,6 @@ outputs:
         - cmake
         - libblas
         - liblapack
-        - libblas
-        - liblapack
     test:
       requires:
         - python
@@ -112,9 +108,21 @@ outputs:
   - name: fast.farm
     build:
       script:
-        - mkdir build && cd build
-        - cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DDOUBLE_PRECISION=OFF -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_LIBDIR=lib
-        - cmake --build . --target FAST.Farm --parallel
+        - cmake {{ cmake_args }} -S . -B build_fastfarm -DBUILD_FASTFARM=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
+        - cmake --build build_fastfarm --target FAST.Farm --parallel
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('fortran') }}
+        - {{ compiler('m2w64_c') }}  # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make
+        - cmake
+      host:
+        - cmake
+        - libblas
+        - liblapack
     test:
       commands:
         - FAST.Farm -h
