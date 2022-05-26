@@ -65,80 +65,80 @@ outputs:
         - openfast -h
 
 
-  - name: openfast-modules
-    build:
-      script:
-        - cmake {{ cmake_args }} -S . -B build_module_drivers
-        - cmake --build build_module_drivers --target aerodyn_driver --parallel
-        - cmake --build build_module_drivers --target hydrodyn_driver --parallel
-    requirements:
-      build:
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-        - {{ compiler('fortran') }}
-        - {{ compiler('m2w64_c') }}  # [win]
-        - {{ compiler('m2w64_cxx') }}  # [win]
-        - make
-        - cmake
-      host:
-        - cmake
-        - libblas
-        - liblapack
-    test:
-      commands:
-        - aerodyn_driver -h
-        - hydrodyn_driver -h
+  # - name: openfast-modules
+  #   build:
+  #     script:
+  #       - cmake {{ cmake_args }} -S . -B build_module_drivers
+  #       - cmake --build build_module_drivers --target aerodyn_driver --parallel
+  #       - cmake --build build_module_drivers --target hydrodyn_driver --parallel
+  #   requirements:
+  #     build:
+  #       - {{ compiler('c') }}
+  #       - {{ compiler('cxx') }}
+  #       - {{ compiler('fortran') }}
+  #       - {{ compiler('m2w64_c') }}  # [win]
+  #       - {{ compiler('m2w64_cxx') }}  # [win]
+  #       - make
+  #       - cmake
+  #     host:
+  #       - cmake
+  #       - libblas
+  #       - liblapack
+  #   test:
+  #     commands:
+  #       - aerodyn_driver -h
+  #       - hydrodyn_driver -h
 
 
-  - name: openfast-libs
-    build:
-      script:
-        # - cmake {{ cmake_args }} -DBUILD_SHARED_LIBS=ON -DBUILD_OPENFAST_CPP_API=ON -S . -B build_libraries
-        - cmake {{ cmake_args }} -DBUILD_SHARED_LIBS=ON -S . -B build_libraries
-        - cmake --build build_libraries --target openfastlib --parallel
-        # - cmake --build build_libraries --target openfastcpplib --parallel
-    requirements:
-      build:
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-        - {{ compiler('fortran') }}
-        - {{ compiler('m2w64_c') }}  # [win]
-        - {{ compiler('m2w64_cxx') }}  # [win]
-        - make
-        - cmake
-      host:
-        - cmake
-        - libblas
-        - liblapack
-    test:
-      requires:
-        - python
-      commands:
-        - python -c "import ctypes.util; assert( ctypes.util.find_library('openfastlib') ) is not None"
-        # - ls build_libraries/glue-codes/openfast-cpp
+  # - name: openfast-libs
+  #   build:
+  #     script:
+  #       # - cmake {{ cmake_args }} -DBUILD_SHARED_LIBS=ON -DBUILD_OPENFAST_CPP_API=ON -S . -B build_libraries
+  #       - cmake {{ cmake_args }} -DBUILD_SHARED_LIBS=ON -S . -B build_libraries
+  #       - cmake --build build_libraries --target openfastlib --parallel
+  #       # - cmake --build build_libraries --target openfastcpplib --parallel
+  #   requirements:
+  #     build:
+  #       - {{ compiler('c') }}
+  #       - {{ compiler('cxx') }}
+  #       - {{ compiler('fortran') }}
+  #       - {{ compiler('m2w64_c') }}  # [win]
+  #       - {{ compiler('m2w64_cxx') }}  # [win]
+  #       - make
+  #       - cmake
+  #     host:
+  #       - cmake
+  #       - libblas
+  #       - liblapack
+  #   test:
+  #     requires:
+  #       - python
+  #     commands:
+  #       - python -c "import ctypes.util; assert( ctypes.util.find_library('openfastlib') ) is not None"
+  #       # - ls build_libraries/glue-codes/openfast-cpp
 
 
-  - name: fast.farm
-    build:
-      script:
-        - cmake {{ cmake_args }} -S . -B build_fastfarm -DBUILD_FASTFARM=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
-        - cmake --build build_fastfarm --target FAST.Farm --parallel
-    requirements:
-      build:
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-        - {{ compiler('fortran') }}
-        - {{ compiler('m2w64_c') }}  # [win]
-        - {{ compiler('m2w64_cxx') }}  # [win]
-        - make
-        - cmake
-      host:
-        - cmake
-        - libblas
-        - liblapack
-    test:
-      commands:
-        - FAST.Farm -h
+  # - name: fast.farm
+  #   build:
+  #     script:
+  #       - cmake {{ cmake_args }} -S . -B build_fastfarm -DBUILD_FASTFARM=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
+  #       - cmake --build build_fastfarm --target FAST.Farm --parallel
+  #   requirements:
+  #     build:
+  #       - {{ compiler('c') }}
+  #       - {{ compiler('cxx') }}
+  #       - {{ compiler('fortran') }}
+  #       - {{ compiler('m2w64_c') }}  # [win]
+  #       - {{ compiler('m2w64_cxx') }}  # [win]
+  #       - make
+  #       - cmake
+  #     host:
+  #       - cmake
+  #       - libblas
+  #       - liblapack
+  #   test:
+  #     commands:
+  #       - FAST.Farm -h
 
 
 about:
