@@ -65,29 +65,38 @@ outputs:
         - openfast -h
 
 
-  # - name: openfast-modules
-  #   build:
-  #     script:
-  #       - cmake {{ cmake_args }} -S . -B build_module_drivers
-  #       - cmake --build build_module_drivers --target aerodyn_driver --parallel
-  #       - cmake --build build_module_drivers --target hydrodyn_driver --parallel
-  #   requirements:
-  #     build:
-  #       - {{ compiler('c') }}
-  #       - {{ compiler('cxx') }}
-  #       - {{ compiler('fortran') }}
-  #       - {{ compiler('m2w64_c') }}  # [win]
-  #       - {{ compiler('m2w64_cxx') }}  # [win]
-  #       - make
-  #       - cmake
-  #     host:
-  #       - cmake
-  #       - libblas
-  #       - liblapack
-  #   test:
-  #     commands:
-  #       - aerodyn_driver -h
-  #       - hydrodyn_driver -h
+  - name: openfast-modules
+    build:
+      script:
+        - cmake {{ cmake_args }} -S . -B build_module_drivers    
+        - cmake --build build_module_drivers --target aerodyn_driver --parallel
+        - cmake --build build_module_drivers --target beamdyn_driver --parallel
+        - cmake --build build_module_drivers --target dwm_driver_wind_farm --parallel
+        - cmake --build build_module_drivers --target feam_driver --parallel
+        - cmake --build build_module_drivers --target hydrodyn_driver --parallel
+        - cmake --build build_module_drivers --target inflowwind_driver --parallel
+        - cmake --build build_module_drivers --target moordyn_driver --parallel
+        - cmake --build build_module_drivers --target orca_driver --parallel
+        - cmake --build build_module_drivers --target servodyn_driver --parallel
+        - cmake --build build_module_drivers --target subdyn_driver --parallel
+        - cmake --build build_module_drivers --target unsteadyaero_driver --parallel
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('fortran') }}
+        - {{ compiler('m2w64_c') }}  # [win]
+        - {{ compiler('m2w64_cxx') }}  # [win]
+        - make
+        - cmake
+      host:
+        - cmake
+        - libblas
+        - liblapack
+    test:
+      commands:
+        - aerodyn_driver -h
+        - hydrodyn_driver -h
 
 
   # - name: openfast-libs
