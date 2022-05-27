@@ -35,6 +35,8 @@ requirements:
 test:
   commands:
     - openfast -h
+    - aerodyn_driver -h
+    - hydrodyn_driver -h
 
 about:
   home: https://github.com/openfast/openfast
