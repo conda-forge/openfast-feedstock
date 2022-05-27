@@ -62,7 +62,8 @@ outputs:
         - liblapack
     test:
       commands:
-        - openfast -h
+        - cd build/glue-codes/openfast
+        - ./openfast -h
 
 
   - name: openfast-modules
@@ -95,8 +96,9 @@ outputs:
         - liblapack
     test:
       commands:
-        - aerodyn_driver -h
-        - hydrodyn_driver -h
+        - cd build_module_drivers/modules
+        - ./aerodyn/aerodyn_driver -h
+        - ./hydrodyn/hydrodyn_driver -h
 
 
   # - name: openfast-libs
