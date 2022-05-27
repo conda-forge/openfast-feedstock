@@ -61,6 +61,8 @@ outputs:
         - libblas
         - liblapack
     test:
+      requires:
+        - conda-verify
       commands:
         - cd build/glue-codes/openfast
         - ./openfast -h
@@ -94,11 +96,11 @@ outputs:
         - cmake
         - libblas
         - liblapack
-    test:
-      commands:
-        - cd build_module_drivers/modules
-        - ./aerodyn/aerodyn_driver -h
-        - ./hydrodyn/hydrodyn_driver -h
+    # test:
+    #   commands:
+    #     - cd build_module_drivers/modules
+    #     - ./aerodyn/aerodyn_driver -h
+    #     - ./hydrodyn/hydrodyn_driver -h
 
 
   # - name: openfast-libs
