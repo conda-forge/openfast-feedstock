@@ -28,6 +28,8 @@ requirements:
     - {{ compiler('m2w64_cxx') }}  # [win]
     - make
     - cmake
+    - llvm-openmp  # [osx]
+    - libgomp      # [linux]
   host:
     - libblas
     - liblapack
