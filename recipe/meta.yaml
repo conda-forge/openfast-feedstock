@@ -35,8 +35,11 @@ requirements:
 test:
   commands:
     - openfast -h
+    - FAST.Farm -h
     - aerodyn_driver -h
     - hydrodyn_driver -h
+    - moordyn_driver -h
+    - servodyn_driver -h
 
 about:
   home: https://github.com/openfast/openfast
