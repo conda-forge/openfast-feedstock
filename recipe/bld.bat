@@ -3,6 +3,7 @@ mkdir build
 cd build
 
 cmake -G "MinGW Makefiles" ^
+    -DDOUBLE_PRECISION=OFF ^
     -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
     -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" ^
     ..
