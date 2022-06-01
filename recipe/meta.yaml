@@ -27,20 +27,6 @@ build:
   number: 14
   skip: true  # [win]
 
-requirements:
-  build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - {{ compiler('fortran') }}
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
-    - make
-    - cmake
-  host:
-    - cmake
-    - libblas
-    - liblapack
-
 outputs:
   - name: openfast
     build:
@@ -57,7 +43,6 @@ outputs:
         - make
         - cmake
       host:
-        - cmake
         - libblas
         - liblapack
     test:
@@ -93,7 +78,6 @@ outputs:
         - make
         - cmake
       host:
-        - cmake
         - libblas
         - liblapack
     # test:
