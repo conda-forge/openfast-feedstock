@@ -24,24 +24,24 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
-    - make
+    - make  # [unix]
     - cmake
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
   host:
-    - libblas
-    - liblapack
+    - libblas  # [unix]
+    - liblapack  # [unix]
+    - m2w64-openblas  # [win]
 
 test:
   commands:
-    - openfast -h
-    - FAST.Farm -h
-    - aerodyn_driver -h
-    - hydrodyn_driver -h
-    - moordyn_driver -h
-    - servodyn_driver -h
+    - openfast -h     # [unix]
+    - FAST.Farm -h     # [unix]
+    - aerodyn_driver -h     # [unix]
+    - hydrodyn_driver -h     # [unix]
+    - moordyn_driver -h     # [unix]
+    - servodyn_driver -h     # [unix]
+    - openfast.exe /h  # [win]
 
 about:
   home: https://github.com/openfast/openfast
