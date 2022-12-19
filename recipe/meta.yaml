@@ -20,8 +20,9 @@ build:
 
 requirements:
   build:
-    - llvm
-    - make
+    - clang # [win]
+    - ninja # [win]
+    - make  # [not win]
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}

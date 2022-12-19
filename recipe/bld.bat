@@ -1,9 +1,12 @@
 mkdir build
 cd build
 
-cmake -G "Unix Makefiles" ^
+cmake -G "Ninja" ^
     -S %SRC_DIR% ^
     -B . ^
+    -DCMAKE_C_COMPILER=clang ^
+    -DCMAKE_CXX_COMPILER=clang++ ^
+    -DCMAKE_Fortran_COMPILER=flang ^
     -DDOUBLE_PRECISION=OFF ^
     -DCMAKE_INSTALL_PREFIX=%PREFIX% ^
     -DCMAKE_INSTALL_LIBDIR=lib ^
