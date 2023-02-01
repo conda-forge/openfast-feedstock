@@ -1,8 +1,7 @@
 #!/bin/bash
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 && $target_platform == "osx-arm64" ]]; then
-    export FFLAGS="${FFLAGS:-} -Wl,--as-needed"
-    export LDLAGS="${FFLAGS:-} -Wl,--as-needed"
+    export LDLAGS="${LDLAGS:-} -lquadmath"
 fi
 
 mkdir build
