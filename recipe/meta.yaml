@@ -5,11 +5,6 @@ package:
   name: {{ name|lower }}
   version: {{ version }}
 
-# source:
-#   url: https://github.com/openfast/openfast/archive/v{{ version }}.tar.gz
-#   sha256: 94da085f1d8861a93ab32b6b39335a403d182be0b5f7ff48f63d5805eb7f2b2c
-#   # Download the tar-ball and do `openssl sha256 file.tar.gz` to update
-
 source:
   git_url: https://github.com/openfast/openfast.git
   git_rev: v{{ version }}
@@ -19,20 +14,20 @@ build:
   number: 2
   missing_dso_whitelist:
     - "*/libopenfastlib.dll"   # [win]
+    - "*/libgomp-1.dll"        # [win]
     
 requirements:
   build:
     - {{ compiler('c') }}  # [not win]
     - {{ compiler('cxx') }}  # [not win]
     - {{ compiler('fortran') }}  # [not win]
-    - cmake
     - make  # [not win]
+    - cmake
     - llvm-openmp  # [osx]
-    - libgomp  # [linux]
+    - libgomp  # [linux or win]
   host:
-    - liblapack
-    - libblas
-
+    - ucrt  # [win]
+    - openblas
 
 test:
   commands:
