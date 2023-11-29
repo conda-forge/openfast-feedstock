@@ -5,11 +5,9 @@ github:
 conda_build:
   pkg_format: '2'
 choco:
-  - mingw --version=12.2
-  - make
-  - ninja
-  - jom
+  - mingw --version=13.2.0
 build_platform:
   osx_arm64: osx_64
-test: native_and_emulated
+  linux_aarch64: linux_64
+test: native
 
