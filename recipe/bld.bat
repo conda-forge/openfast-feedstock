@@ -1,9 +1,5 @@
 @echo on
 
-where gcc.exe
-where g++.exe
-where gfortran.exe
-
 mkdir build
 cd build
 
@@ -11,7 +7,7 @@ cmake ^
     -S %SRC_DIR% ^
     -B . ^
     -G "MinGW Makefiles" ^
-    -DCMAKE_BUILD_TYPE="Debug" ^
+-DCMAKE_BUILD_TYPE="Debug" ^
     -DDOUBLE_PRECISION=OFF ^
     -DBLA_VENDOR=OpenBLAS ^
     -DBLA_STATIC=ON ^
@@ -20,8 +16,9 @@ cmake ^
     -DBUILD_FASTFARM=ON ^
     -DCMAKE_C_COMPILER=gcc.exe ^
     -DCMAKE_CXX_COMPILER=g++.exe ^
-    -DCMAKE_Fortran_COMPILER=gfortran.exe
-
+    -DCMAKE_Fortran_COMPILER=gfortran.exe ^
+    -DCMAKE_EXE_LINKER_FLAGS "-static-libgfortran -static-libgcc" ^
+    -DCMAKE_SHARED_LINKER_FLAGS "-static-libgfortran -static-libgcc" 
 if errorlevel 1 exit /b 1
 	
 cmake --build . -j 2
