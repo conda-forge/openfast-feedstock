@@ -3,6 +3,8 @@
 mkdir build
 cd build
 
+set LDFLAGS="-static"
+
 cmake ^
     -S %SRC_DIR% ^
     -B . ^
