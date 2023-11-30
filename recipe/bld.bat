@@ -9,7 +9,7 @@ cmake ^
     -S %SRC_DIR% ^
     -B . ^
     -G "MinGW Makefiles" ^
--DCMAKE_BUILD_TYPE="Debug" ^
+    -DCMAKE_BUILD_TYPE="Debug" ^
     -DDOUBLE_PRECISION=OFF ^
     -DBLA_VENDOR=OpenBLAS ^
     -DBLA_STATIC=ON ^
