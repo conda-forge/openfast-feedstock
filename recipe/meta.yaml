@@ -14,7 +14,6 @@ build:
   number: 2
   missing_dso_whitelist:
     - "*/libopenfastlib.dll"   # [win]
-    # - "*/libgomp-1.dll"        # [win]
     
 requirements:
   build:
@@ -25,12 +24,12 @@ requirements:
     - cmake
     - llvm-openmp  # [osx]
   host:
+    - libopenblas
     - ucrt  # [win]
-    - openblas
     - libgomp  # [linux or win]
   run:
+    - libopenblas
     - ucrt  # [win]
-    - openblas
     - libgomp  # [linux or win]
 
 test:
