@@ -24,11 +24,11 @@ requirements:
     - cmake
     - llvm-openmp  # [osx]
   host:
-    - libopenblas
+    - openblas
     - ucrt  # [win]
     - libgomp  # [linux or win]
   run:
-    - libopenblas
+    - libopenblas # [win]
     - ucrt  # [win]
     - libgomp  # [linux or win]
 
