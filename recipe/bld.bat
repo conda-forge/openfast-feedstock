@@ -17,8 +17,8 @@ cmake ^
     -DCMAKE_C_COMPILER=gcc.exe ^
     -DCMAKE_CXX_COMPILER=g++.exe ^
     -DCMAKE_Fortran_COMPILER=gfortran.exe ^
-    -DCMAKE_EXE_LINKER_FLAGS "-static-libgfortran -static-libgcc" ^
-    -DCMAKE_SHARED_LINKER_FLAGS "-static-libgfortran -static-libgcc" 
+    -DCMAKE_EXE_LINKER_FLAGS="-static-libgfortran -static-libgcc" ^
+    -DCMAKE_SHARED_LINKER_FLAGS="-static-libgfortran -static-libgcc" 
 if errorlevel 1 exit /b 1
 	
 cmake --build . -j 2
