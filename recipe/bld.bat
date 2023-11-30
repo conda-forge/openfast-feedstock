@@ -9,6 +9,7 @@ cmake ^
     -S %SRC_DIR% ^
     -B . ^
     -G "MinGW Makefiles" ^
+    -DCMAKE_BUILD_TYPE="Debug" ^
     -DDOUBLE_PRECISION=OFF ^
     -DBLA_VENDOR=OpenBLAS ^
     -DBLA_STATIC=ON ^
@@ -25,7 +26,4 @@ cmake --build . -j 2
 if errorlevel 1 exit /b 1
 
 cmake --install .
-if errorlevel 1 exit /b 1
-
-del %LIBRARY_PREFIX%\include %LIBRARY_PREFIX%\lib
 if errorlevel 1 exit /b 1
