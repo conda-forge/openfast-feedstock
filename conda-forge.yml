@@ -4,8 +4,6 @@ github:
   tooling_branch_name: main
 conda_build:
   pkg_format: '2'
-choco:
-  - mingw --version=13.2.0
 build_platform:
   osx_arm64: osx_64
 test: native
