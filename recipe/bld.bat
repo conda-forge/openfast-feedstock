@@ -1,6 +1,8 @@
 @echo on
 
-set LDFLAGS="-static"
+where gcc.exe
+where g++.exe
+where gfortran.exe
 
 mkdir build
 cd build
