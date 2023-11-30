@@ -28,7 +28,7 @@ requirements:
     - ucrt  # [win]
     - libgomp  # [linux or win]
   run:
-    - libopenblas # [win]
+    - libopenblas  # [win]
     - ucrt  # [win]
     - libgomp  # [linux or win]
 
