@@ -1,5 +1,5 @@
 {% set name = "openfast" %}
-{% set version = "3.1.0" %}
+{% set version = "dev" %}
 
 package:
   name: {{ name|lower }}
@@ -17,25 +17,36 @@ source:
 
   
 build:
-  number: 183
-  skip: true  # [win]
+  number: 184
+  missing_dso_whitelist:
+    - "*/libopenfastlib.dll"   # [win]
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - {{ compiler('fortran') }}
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
-    - make
+    - {{ compiler('c') }}  # [not win]
+    - {{ compiler('cxx') }}  # [not win]
+    - {{ compiler('fortran') }}  # [not win]
+    - make  # [not win]
     - cmake
+    - llvm-openmp  # [osx]
   host:
-    - libblas
-    - liblapack
+    - openblas
+    - ucrt  # [win]
+    - libgomp  # [linux or win]
+  run:
+    - libopenblas  # [win]
+    - ucrt  # [win]
+    - libgomp  # [linux or win]
 
 test:
   commands:
     - openfast -h
+    - FAST.Farm -h
+    - aerodyn_driver -h
+    - hydrodyn_driver -h
+    - moordyn_driver -h
+    - servodyn_driver -h
+    - turbsim -h
 
 about:
   home: https://github.com/openfast/openfast
@@ -48,5 +59,7 @@ about:
 
 extra:
   recipe-maintainers:
-    - rafmudaf
     - openfast
+    - deslaughter
+    - gbarter
+    - andrew-platt
