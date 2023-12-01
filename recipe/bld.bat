@@ -20,5 +20,5 @@ cmake ^
     -DCMAKE_Fortran_COMPILER=gfortran.exe
 if errorlevel 1 exit /b 1
 	
-cmake --build . --target install -j %CPU_COUNT%
+cmake --build build --target install -j %CPU_COUNT%
 if errorlevel 1 exit /b 1
