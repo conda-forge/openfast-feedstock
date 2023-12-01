@@ -1,11 +1,11 @@
-About openfast
-==============
+About openfast-feedstock
+========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/openfast-feedstock/blob/dev/LICENSE.txt)
 
 Home: https://github.com/openfast/openfast
 
 Package license: Apache-2.0
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/openfast-feedstock/blob/master/LICENSE.txt)
 
 Summary: OpenFAST whole turbine simulation tool
 
@@ -26,8 +26,8 @@ Current build status
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9498&branchName=master">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/openfast-feedstock?branchName=master">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=dev">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/openfast-feedstock?branchName=dev">
           </a>
         </summary>
         <table>
@@ -35,15 +35,29 @@ Current build status
           <tbody><tr>
               <td>linux_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9498&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/openfast-feedstock?branchName=master&jobName=linux&configuration=linux_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=dev">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/openfast-feedstock?branchName=dev&jobName=linux&configuration=linux%20linux_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9498&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/openfast-feedstock?branchName=master&jobName=osx&configuration=osx_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=dev">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/openfast-feedstock?branchName=dev&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=dev">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/openfast-feedstock?branchName=dev&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=dev">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/openfast-feedstock?branchName=dev&jobName=win&configuration=win%20win_64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -64,23 +78,48 @@ Current release info
 Installing openfast
 ===================
 
-Installing `openfast` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `openfast` from the `conda-forge/label/dev` channel can be achieved by adding `conda-forge/label/dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `openfast` can be installed with:
+Once the `conda-forge/label/dev` channel has been enabled, `openfast` can be installed with `conda`:
 
 ```
 conda install openfast
 ```
 
-It is possible to list all of the versions of `openfast` available on your platform with:
+or with `mamba`:
 
 ```
-conda search openfast --channel conda-forge
+mamba install openfast
+```
+
+It is possible to list all of the versions of `openfast` available on your platform with `conda`:
+
+```
+conda search openfast --channel conda-forge/label/dev
+```
+
+or with `mamba`:
+
+```
+mamba search openfast --channel conda-forge/label/dev
+```
+
+Alternatively, `mamba repoquery` may provide more information:
+
+```
+# Search all versions available on your platform:
+mamba repoquery search openfast --channel conda-forge/label/dev
+
+# List packages depending on `openfast`:
+mamba repoquery whoneeds openfast --channel conda-forge/label/dev
+
+# List dependencies of `openfast`:
+mamba repoquery depends openfast --channel conda-forge/label/dev
 ```
 
 
@@ -98,10 +137,12 @@ for each of the installable packages. Such a repository is known as a *feedstock
 A feedstock is made up of a conda recipe (the instructions on what and how to build
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
-[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/)
-and [TravisCI](https://travis-ci.com/) it is possible to build and upload installable
-packages to the [conda-forge](https://anaconda.org/conda-forge)
-[Anaconda-Cloud](https://anaconda.org/) channel for Linux, Windows and OSX respectively.
+[Azure](https://azure.microsoft.com/en-us/services/devops/), [GitHub](https://github.com/),
+[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
+[Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
+it is possible to build and upload installable packages to the
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
+channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
@@ -148,6 +189,8 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@andrew-platt](https://github.com/andrew-platt/)
+* [@deslaughter](https://github.com/deslaughter/)
+* [@gbarter](https://github.com/gbarter/)
 * [@openfast](https://github.com/openfast/)
-* [@rafmudaf](https://github.com/rafmudaf/)
 

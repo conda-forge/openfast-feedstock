@@ -1,3 +1,9 @@
 conda_forge_output_validation: true
+github:
+  branch_name: dev
+  tooling_branch_name: dev
 conda_build:
   pkg_format: '2'
+build_platform:
+  osx_arm64: osx_64
+test: native
