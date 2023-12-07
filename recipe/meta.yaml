@@ -11,7 +11,7 @@ source:
   git_depth: 1 # (Defaults to -1/not shallow)
 
 build:
-  number: 2
+  number: 3
   missing_dso_whitelist:
     - "*/libopenfastlib.dll"   # [win]
     
@@ -22,15 +22,14 @@ requirements:
     - {{ compiler('fortran') }}  # [not win]
     - make  # [not win]
     - cmake
-    - llvm-openmp  # [osx]
+    - llvm-openmp  # [osx or win]
+    - libgomp      # [linux]
   host:
     - openblas
     - ucrt  # [win]
-    - libgomp  # [linux or win]
   run:
     - libopenblas  # [win]
     - ucrt  # [win]
-    - libgomp  # [linux or win]
 
 test:
   commands:
