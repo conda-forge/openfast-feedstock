@@ -11,7 +11,7 @@ source:
   git_depth: 1 # (Defaults to -1/not shallow)
 
 build:
-  number: 2
+  number: 3
   missing_dso_whitelist:
     - "*/libopenfastlib.dll"   # [win]
     
@@ -23,14 +23,15 @@ requirements:
     - make  # [not win]
     - cmake
     - llvm-openmp  # [osx]
+    - libgomp      # [linux]
   host:
     - openblas
     - ucrt  # [win]
-    - libgomp  # [linux or win]
+    - _openmp_mutex=*=*_llvm  # [win]
   run:
     - libopenblas  # [win]
     - ucrt  # [win]
-    - libgomp  # [linux or win]
+    - _openmp_mutex=*=*_llvm  # [win]
 
 test:
   commands:
