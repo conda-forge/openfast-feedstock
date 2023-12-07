@@ -22,7 +22,7 @@ requirements:
     - {{ compiler('fortran') }}  # [not win]
     - make  # [not win]
     - cmake
-    - llvm-openmp  # [osx or win]
+    - llvm-openmp  # [osx]
     - libgomp      # [linux]
   host:
     - openblas
