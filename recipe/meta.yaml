@@ -27,9 +27,11 @@ requirements:
   host:
     - openblas
     - ucrt  # [win]
+    - _openmp_mutex=*=*_llvm  # [win]
   run:
     - libopenblas  # [win]
     - ucrt  # [win]
+    - _openmp_mutex=*=*_llvm  # [win]
 
 test:
   commands:
