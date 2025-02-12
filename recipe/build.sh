@@ -11,6 +11,7 @@ cmake \
     -S ${SRC_DIR} \
     -B . \
     -DDOUBLE_PRECISION=OFF \
+    -DGIT_DESCRIBE=v${PKG_VERSION} ^
     -DCMAKE_INSTALL_PREFIX=${PREFIX} \
     -DBUILD_FASTFARM=ON \
     -DBLA_VENDOR=OpenBLAS \
