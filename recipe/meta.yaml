@@ -23,20 +23,25 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}  # [not win]
-    - {{ compiler('cxx') }}  # [not win]
-    - {{ compiler('fortran') }}  # [not win]
-    - make  # [not win]
+    - {{ stdlib("c") }}                 # [not win]
+    - {{ compiler('c') }}               # [not win]
+    - {{ compiler('cxx') }}             # [not win]
+    - {{ compiler('fortran') }}         # [not win]
+    - {{ compiler('m2w64_c') }}         # [win]
+    - {{ compiler('m2w64_cxx') }}       # [win]
+    - {{ compiler('m2w64_fortran') }}   # [win]
     - cmake
-    - llvm-openmp  # [osx]
+    - make         # [not win]
+    - ninja        # [win]
   host:
-    - openblas
-    - ucrt  # [win]
-    - libgomp  # [linux or win]
+    - libgomp      # [not osx]
+    - llvm-openmp  # [osx]
+    - openblas     # [not win]
+    - libblas      # [win]
+    - liblapack    # [win]
   run:
-    - libopenblas  # [win]
-    - ucrt  # [win]
-    - libgomp  # [linux or win]
+    - libgomp      # [not osx]
+    - llvm-openmp  # [osx]
 
 test:
   commands:
@@ -59,7 +64,6 @@ about:
 
 extra:
   recipe-maintainers:
-    - openfast
     - deslaughter
     - gbarter
     - andrew-platt

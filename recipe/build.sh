@@ -1,20 +1,17 @@
 #!/bin/bash
 
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 && $target_platform == "osx-arm64" ]]; then
-    export LDFLAGS="${LDFLAGS:-} -lquadmath"
-fi
-
 mkdir build
-cd build
 
 cmake \
     -S ${SRC_DIR} \
-    -B . \
-    -DDOUBLE_PRECISION=OFF \
+    -B build \
+    -G "Unix Makefiles" \
+    -DCMAKE_BUILD_TYPE="Release" \
     -DGIT_DESCRIBE=v${PKG_VERSION} \
     -DCMAKE_INSTALL_PREFIX=${PREFIX} \
-    -DBUILD_FASTFARM=ON \
+    -DDOUBLE_PRECISION=OFF \
     -DBLA_VENDOR=OpenBLAS \
-    -DBLA_STATIC=ON
+    -DBLA_STATIC=ON \
+    -DBUILD_FASTFARM=ON
 
-cmake --build . --target install -j ${CPU_COUNT}
+cmake --build build --target install -j ${CPU_COUNT}
