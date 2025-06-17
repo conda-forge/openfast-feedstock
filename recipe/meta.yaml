@@ -17,7 +17,7 @@ source:
 
   
 build:
-  number: 333
+  number: 334
   missing_dso_whitelist:
     - "*/libopenfastlib.dll"   # [win]
 
