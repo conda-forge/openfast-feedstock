@@ -1,5 +1,5 @@
 {% set name = "openfast" %}
-{% set version = "4.1.1" %}
+{% set version = "4.1.2" %}
 
 package:
   name: {{ name|lower }}
@@ -10,7 +10,7 @@ source:
   # conda-forge requests tar-ball urls instead of git actions for source
   # Use `openssl sha256 file.tar.gz` to get sha256 stamp
   url: https://github.com/openfast/openfast/archive/v{{ version }}.tar.gz
-  sha256: 943a35f4e0e2cd095a72b9d3cbd9bd4e005e4ebc5e7cc23eef3108bd78a366cf
+  sha256: 940166d4a0d3c1349d8451c7080093f00711c2be38cbf28f2452912b46e52c7a
   #git_url: https://github.com/openfast/openfast.git
   #git_rev: v{{ version }}
   #git_depth: 1 # (Defaults to -1/not shallow)
