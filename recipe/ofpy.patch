@@ -1,0 +1,56 @@
+diff --git a/glue-codes/python/pyproject.toml b/glue-codes/python/pyproject.toml
+index 133d56967..8cef85e50 100644
+--- a/glue-codes/python/pyproject.toml
++++ b/glue-codes/python/pyproject.toml
+@@ -22,20 +22,21 @@ classifiers = [
+     "Programming Language :: Python :: 3.11",
+     "Programming Language :: Python :: 3.12",
+     "Programming Language :: Python :: 3.13",
++    "Programming Language :: Python :: 3.14",
+     "Programming Language :: Python :: Implementation :: CPython",
+     "Programming Language :: Python :: Implementation :: PyPy"
+ ]
+ dependencies = [
+-    "numpy~=2.0",
+-    "matplotlib~=3.0",
++    "numpy>=2.0",
++    "matplotlib>=3.0",
+ ]
+ 
+ [project.optional-dependencies]
+ windio = [
+-    "windio~=1.0",
++    "windio>=1.0",
+ ]
+ develop = [
+-    "pytest~=8.0",
++    "pytest>=8.0",
+ ]
+ 
+ [tool.setuptools.packages.find]
+diff --git a/openfast_io/openfast_io/turbsim_util.py b/openfast_io/openfast_io/turbsim_util.py
+index 73e1c0cc3..a47dd3ab5 100644
+--- a/openfast_io/openfast_io/turbsim_util.py
++++ b/openfast_io/openfast_io/turbsim_util.py
+@@ -90,6 +90,8 @@ class TurbsimReader(object):
+         self.CTLz = inpf.readline().split()[0]
+         self.CTStartTime = inpf.readline().split()[0]
+ 
++        inpf.close()
++
+ 
+ class TurbsimWriter(object):
+ 
+diff --git a/openfast_io/pyproject.toml b/openfast_io/pyproject.toml
+index b942dade9..3fc577030 100644
+--- a/openfast_io/pyproject.toml
++++ b/openfast_io/pyproject.toml
+@@ -42,6 +42,8 @@ classifiers = [  # Optional
+   "Programming Language :: Python :: 3.10",
+   "Programming Language :: Python :: 3.11",
+   "Programming Language :: Python :: 3.12",
++  "Programming Language :: Python :: 3.13",
++  "Programming Language :: Python :: 3.14",
+   "Programming Language :: Python :: 3 :: Only",
+ ]
+ 
