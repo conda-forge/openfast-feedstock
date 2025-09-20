@@ -73,25 +73,25 @@ outputs:
 
   - name: openfast-io
     version: {{ version }}
-    script: build_io.sh  # [not win]
-    script: bld_io.bat  # [win]
+    #script: build_io.sh  # [not win]
+    #script: bld_io.bat  # [win]
     build:
-      #noarch: python
-      skip: true  # [py<311]
-      #script: {{ PYTHON }} -m pip install openfast_io -vv --no-deps --no-build-isolation
+      noarch: python
+      #skip: true  # [py<311]
+      script: {{ PYTHON }} -m pip install ./openfast_io -vv --no-deps --no-build-isolation
     requirements:
-      build:
-        - cross-python_{{ target_platform }}               # [build_platform != target_platform]
-        - python                                           # [build_platform != target_platform]
+      #build:
+      #  - cross-python_{{ target_platform }}               # [build_platform != target_platform]
+      #  - python                                           # [build_platform != target_platform]
       host:
-        - python       #{{ python_min }}
+        - python {{ python_min }}
         - setuptools
         - hatchling
         - hatch-vcs
         - pip
         #- {{ pin_subpackage('openfast', exact=True) }}
       run:
-        - python       #>={{ python_min }}
+        - python >={{ python_min }}
         - numpy
         - pandas
         - ruamel_yaml
@@ -106,23 +106,23 @@ outputs:
 
   - name: pyopenfast
     version: {{ version }}
-    script: build_pyof.sh  # [not win]
-    script: bld_pyof.bat  # [win]
+    #script: build_pyof.sh  # [not win]
+    #script: bld_pyof.bat  # [win]
     build:
-      #noarch: python
-      skip: true  # [py<311]
-      #script: {{ PYTHON }} -m pip install openfast_io -vv --no-deps --no-build-isolation
+      noarch: python
+    #  skip: true  # [py<311]
+      script: {{ PYTHON }} -m pip install ./glue-codes/python -vv --no-deps --no-build-isolation
     requirements:
-      build:
-        - cross-python_{{ target_platform }}               # [build_platform != target_platform]
-        - python                                           # [build_platform != target_platform]
+      #build:
+      #  - cross-python_{{ target_platform }}               # [build_platform != target_platform]
+      #  - python                                           # [build_platform != target_platform]
       host:
-        - python       #{{ python_min }}
+        - python  {{ python_min }}
         - setuptools
         - pip
         #- {{ pin_subpackage('openfast', exact=True) }}
       run:
-        - python       #>={{ python_min }}
+        - python  >={{ python_min }}
         - numpy
         #- {{ pin_subpackage('openfast', exact=True) }}
 
