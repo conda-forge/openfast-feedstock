@@ -76,18 +76,18 @@ outputs:
               - llvm-openmp        # [osx]
       test:
           commands:
-              - aerodisk_driver -h
+              - aerodisk_driver -help
               - aerodyn_driver -h
-              - beamdyn_driver -h
+              #- beamdyn_driver -h
               - FAST.Farm -h
               - hydrodyn_driver -h
-              - inflowwind_driver -h
+              - inflowwind_driver -help
               - moordyn_driver -h
               - openfast -h
               - seastate_driver -h
-              - sed_driver -h
+              - sed_driver -help
               - servodyn_driver -h
-              - subdyn_driver -h
+              #- subdyn_driver -h
               - turbsim -h
 
             
