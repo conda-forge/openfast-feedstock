@@ -1,5 +1,5 @@
 diff --git a/glue-codes/python/pyproject.toml b/glue-codes/python/pyproject.toml
-index 133d56967..8cef85e50 100644
+index 133d56967..6d4633313 100644
 --- a/glue-codes/python/pyproject.toml
 +++ b/glue-codes/python/pyproject.toml
 @@ -22,20 +22,21 @@ classifiers = [
@@ -13,18 +13,18 @@ index 133d56967..8cef85e50 100644
  dependencies = [
 -    "numpy~=2.0",
 -    "matplotlib~=3.0",
-+    "numpy>=2.0",
-+    "matplotlib>=3.0",
++    "numpy",
++    "matplotlib",
  ]
  
  [project.optional-dependencies]
  windio = [
 -    "windio~=1.0",
-+    "windio>=1.0",
++    "windio",
  ]
  develop = [
 -    "pytest~=8.0",
-+    "pytest>=8.0",
++    "pytest",
  ]
  
  [tool.setuptools.packages.find]
@@ -42,23 +42,42 @@ index 73e1c0cc3..a47dd3ab5 100644
  class TurbsimWriter(object):
  
 diff --git a/openfast_io/pyproject.toml b/openfast_io/pyproject.toml
-index b942dade9..d685ed13f 100644
+index b942dade9..c356f47b5 100644
 --- a/openfast_io/pyproject.toml
 +++ b/openfast_io/pyproject.toml
-@@ -42,13 +42,15 @@ classifiers = [  # Optional
+@@ -42,14 +42,18 @@ classifiers = [  # Optional
    "Programming Language :: Python :: 3.10",
    "Programming Language :: Python :: 3.11",
    "Programming Language :: Python :: 3.12",
 +  "Programming Language :: Python :: 3.13",
 +  "Programming Language :: Python :: 3.14",
    "Programming Language :: Python :: 3 :: Only",
++  "Programming Language :: Python :: 3",
++  "Programming Language :: Python",
  ]
  
  dependencies = [
-     "numpy>1.0",
-     "pandas>2.0",
+-    "numpy>1.0",
+-    "pandas>2.0",
 -    "ruamel_yaml>0.18",
-+    "ruamel_yaml>0.15",
-     "deepdiff>8.0",
+-    "deepdiff>8.0",
++    "numpy",
++    "pandas",
++    "ruamel_yaml",
++    "deepdiff",
      ]
      
+ [project.urls]
+@@ -62,9 +66,9 @@ Issues = "https://github.com/OpenFAST/openfast/issues"
+ 
+ [project.optional-dependencies]
+ 
+-rosco = ["rosco>2.9.2"]
+-xlrd = ["xlrd>2"]
+-all = ["rosco>2.9.2", "xlrd>2"]
++rosco = ["rosco"]
++xlrd = ["xlrd"]
++all = ["rosco", "xlrd"]
+ 
+ [tool.hatch.version]
+ source = "vcs"
