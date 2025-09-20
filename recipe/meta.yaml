@@ -85,7 +85,7 @@ outputs:
               - moordyn_driver -h
               - openfast -h
               - seastate_driver -h
-              - sed_driver -help
+              #- sed_driver -help
               - servodyn_driver -h
               #- subdyn_driver -h
               - turbsim -h
