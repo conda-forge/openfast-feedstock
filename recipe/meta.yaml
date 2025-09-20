@@ -115,7 +115,7 @@ outputs:
               - {{ pin_compatible('numpy') }}
               #- numpy
               - pandas
-              - ruamel_yaml
+              - ruamel.yaml
               - deepdiff
               #- {{ pin_subpackage('openfast', exact=True) }}
       test:
