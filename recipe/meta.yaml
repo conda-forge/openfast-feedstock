@@ -112,8 +112,8 @@ outputs:
               #- {{ pin_subpackage('openfast', exact=True) }}
           run:
               - python
-              - {{ pin_compatible('numpy') }}
-              #- numpy
+              #- {{ pin_compatible('numpy') }}
+              - numpy
               - pandas
               - ruamel.yaml
               - deepdiff
@@ -143,8 +143,8 @@ outputs:
               #- {{ pin_subpackage('openfast', exact=True) }}
           run:
               - python
-              - {{ pin_compatible('numpy') }}
-              #- numpy
+              #- {{ pin_compatible('numpy') }}
+              - numpy
               #- {{ pin_subpackage('openfast', exact=True) }}
       test:
           imports:
