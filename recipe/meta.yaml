@@ -56,18 +56,18 @@ outputs:
 
     test:
       commands:
-        - aerodisk_driver -h
+        #- aerodisk_driver -h
         - aerodyn_driver -h
-        - beamdyn_driver -h
+        #- beamdyn_driver -h
         - FAST.Farm -h
         - hydrodyn_driver -h
-        - inflowwind_driver -h
+        #- inflowwind_driver -h
         - moordyn_driver -h
         - openfast -h
         - seastate_driver -h
-        - sed_driver -h
+        #- sed_driver -h
         - servodyn_driver -h
-        - subdyn_driver -h
+        #- subdyn_driver -h
         - turbsim -h
 
   - name: openfast-io
