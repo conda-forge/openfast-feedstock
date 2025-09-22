@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export LDFLAGS="-Wl,-no_compact_unwind"
-
 mkdir build
 
 cmake \
