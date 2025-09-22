@@ -7,7 +7,7 @@ mkdir build
 cmake \
     -S ${SRC_DIR} \
     -B build \
-    -G "Unix Makefiles" \
+    -G "Ninja" \
     -DCMAKE_BUILD_TYPE="Release" \
     -DCMAKE_INSTALL_PREFIX=${PREFIX} \
     -DGIT_DESCRIBE=v${PKG_VERSION} \

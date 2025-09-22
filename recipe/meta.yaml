@@ -40,8 +40,7 @@ outputs:
         - {{ compiler('m2w64_cxx') }}             # [win]
         - {{ compiler('m2w64_fortran') }}         # [win]
         - cmake
-        - make               # [not win]
-        - ninja              # [win]
+        - ninja
       host:
         - libgomp            # [not osx]
         - llvm-openmp        # [osx]
