@@ -2,13 +2,28 @@
 
 mkdir build
 
-#if [ "$(uname)" == "Darwin" ]; then
-#    btype="RelWithDebInfo"
-vtrack=0
-#else
+if [ "$(uname)" == "Darwin" ]; then
+
+    if [ -n "${FFLAGS}" ] ; then
+	export FFLAGS="-O2 ${FFLAGS} -O2"
+    else
+	export FFLAGS="-O2"
+    fi
+    
+    if [ -n "${CFLAGS}" ] ; then
+	export CFLAGS="-O2 ${CFLAGS} -O2"
+    else
+	export CFLAGS="-O2"
+    fi
+    
+    if [ -n "${CXXFLAGS}" ] ; then
+	export CXXFLAGS="-O2 ${CXXFLAGS} -O2"
+    else
+	export CXXFLAGS="-O2"
+    fi
+fi
+
 btype="Release"
-#    vtrack=1
-#fi
 
 cmake \
     -S ${SRC_DIR} \
@@ -20,7 +35,7 @@ cmake \
     -DDOUBLE_PRECISION=OFF \
     -DBLA_VENDOR=OpenBLAS \
     -DBLA_STATIC=ON \
-    -DBUILD_FASTFARM=ON \
-    -DVARIABLE_TRACKING=${vtrack}
+    -DBUILD_FASTFARM=ON
+
 
 cmake --build build --target install -j ${CPU_COUNT}
