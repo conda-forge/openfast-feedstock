@@ -2,13 +2,13 @@
 
 mkdir build
 
-if [ "$(uname)" == "Darwin" ]; then
-    btype="RelWithDebInfo"
-    vtrack=0
-else
-    btype="Release"
-    vtrack=1
-fi
+#if [ "$(uname)" == "Darwin" ]; then
+#    btype="RelWithDebInfo"
+vtrack=0
+#else
+btype="Release"
+#    vtrack=1
+#fi
 
 cmake \
     -S ${SRC_DIR} \
