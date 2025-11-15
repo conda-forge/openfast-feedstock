@@ -17,7 +17,7 @@ source:
     - ofpy.patch
 
 build:
-  number: 3
+  number: 4
 
 outputs:
 
@@ -32,13 +32,10 @@ outputs:
         - "*/libopenfastlib.dll"         # [win]
     requirements:
       build:
-        - {{ stdlib("c") }}                       # [not win]
-        - {{ compiler('c') }}                     # [not win]
-        - {{ compiler('cxx') }}                   # [not win]
-        - {{ compiler('fortran') }}               # [not win]
-        - {{ compiler('m2w64_c') }}               # [win]
-        - {{ compiler('m2w64_cxx') }}             # [win]
-        - {{ compiler('m2w64_fortran') }}         # [win]
+        - {{ stdlib("c") }}
+        - {{ compiler("c") }}
+        - {{ compiler("cxx") }}
+        - {{ compiler("fortran") }}
         - cmake
         - ninja
       host:
@@ -48,7 +45,7 @@ outputs:
         - libblas            # [win]
         - liblapack          # [win]
         #- libcblas
-        #- liblapacke    
+        #- liblapacke
       run:
         - libgomp            # [not osx]
         - llvm-openmp        # [osx]
