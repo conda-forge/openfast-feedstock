@@ -13,7 +13,7 @@ source:
   sha256: f84793e7e6e8e5c6b995f8c8727c5104f3f8d3729ea2aae095b86d770e60063a
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - package:
@@ -22,8 +22,7 @@ outputs:
       script:
         - if: win
           then: build_of.bat
-        - if: not win
-          then: build_of.sh
+          else: build_of.sh
     requirements:
       build:
         - if: not win
@@ -32,8 +31,7 @@ outputs:
             - ${{ compiler('c') }}
             - ${{ compiler('cxx') }}
             - ${{ compiler('fortran') }}
-        - if: win
-          then:
+          else:
             - ${{ compiler('m2w64_fortran') }}
             - ${{ compiler('m2w64_c') }}
             - ${{ compiler('m2w64_cxx') }}
@@ -43,38 +41,35 @@ outputs:
         - if: not win
           then:
             - openblas
-        - if: win
-          then:
+          else:
             - libblas
             - liblapack
         - if: not osx
           then:
             - libgomp
-        - if: osx
-          then:
+          else:
             - llvm-openmp
       run:
         - if: not osx
           then:
             - libgomp
-        - if: osx
-          then:
+          else:
             - llvm-openmp
     tests:
       - script:
         #- aerodisk_driver -h
-        - aerodyn_driver -h
+          - aerodyn_driver -h
         #- beamdyn_driver -h
-        - FAST.Farm -h
-        - hydrodyn_driver -h
+          - FAST.Farm -h
+          - hydrodyn_driver -h
         #- inflowwind_driver -h
-        - moordyn_driver -h
-        - openfast -h
-        - seastate_driver -h
+          - moordyn_driver -h
+          - openfast -h
+          - seastate_driver -h
         #- sed_driver -h
-        - servodyn_driver -h
+          - servodyn_driver -h
         #- subdyn_driver -h
-        - turbsim -h
+          - turbsim -h
 
   - package:
       name: openfast-io
@@ -84,8 +79,7 @@ outputs:
       script:
         - if: win
           then: build_io.bat
-        - if: not win
-          then: build_io.sh
+          else: build_io.sh
     requirements:
       build:
         - if: build_platform != target_platform
@@ -117,8 +111,7 @@ outputs:
       script:
         - if: win
           then: build_pyof.bat
-        - if: not win
-          then: build_pyof.sh
+          else: build_pyof.sh
     requirements:
       build:
         - if: build_platform != target_platform
@@ -152,4 +145,4 @@ extra:
     - deslaughter
     - gbarter
     - andrew-platt
-    
+
